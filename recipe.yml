@@ -1,0 +1,77 @@
+name: Custom Vanilla Desktop # Replace this name with your image name
+id: custom # Replace this ID with your image ID
+stages:
+- id: build
+  base: ghcr.io/vanilla-os/desktop:main # Optionally, Replace this image URL with a different one i.e. nvidia:main, etc
+  singlelayer: false
+  labels:
+    maintainer: self-maintained # Optionally, Replace this with your name
+  args:
+    DEBIAN_FRONTEND: noninteractive # Set the image environment as non-interactive
+  
+  # Commands to run first before building the modules
+  runs:
+    commands:
+      - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
+
+  modules:
+  - name: init-setup
+    type: shell
+    commands:
+    - lpkg --unlock
+    - apt-get update
+
+  # Put your custom actions below this comment
+
+  - name: example-packages # Sample module using the built-in Apt module to install packages
+    type: apt
+    source:
+      packages:
+      - vim
+
+  - name: example-commands # Sample module demonstrating the Shell module with custom commands
+    type: shell
+    commands:
+    - echo Example output
+
+  - name: example-modules # Sample module demonstrating importing local and remote modules
+    type: includes
+    includes:
+      - modules/50-install-debs.yml # Sample local module present in this repository
+      - gh:vanilla-os/dev-image:main:modules/00-basics.yml # Sample GitHub remote module in the format: `gh:your-name/your-repo:branch:modules/file.yml`
+      - https://raw.githubusercontent.com/Vanilla-OS/dev-image/main/modules/05-go.yml # Sample full URL remote module
+
+  # Put your custom actions above this comment
+
+  - name: set-image-name-abroot
+    type: includes
+    includes:
+      - modules/80-set-image-abroot-config.yml
+
+  - name: cleanup
+    type: shell
+    commands:
+    - apt-get autoremove -y
+    - apt-get clean
+    - lpkg --lock
+
+  - name: fsguard
+    type: fsguard
+    CustomFsGuard: false
+    FsGuardLocation: "/usr/sbin/FsGuard"
+    GenerateKey: true
+    FilelistPaths: ["/usr/bin"]
+    modules:
+      - name: remove-prev-fsguard
+        type: shell
+        commands:
+          - rm -rf /FsGuard 
+          - rm -f ./minisign.pub ./minisign.key 
+          - chmod +x /usr/sbin/init
+
+  - name: cleanup2
+    type: shell
+    commands:
+      - rm -rf /tmp/*
+      - rm -rf /var/tmp/*
+      - rm -rf /sources
