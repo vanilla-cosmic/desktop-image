@@ -6,4 +6,4 @@ source:
     - zenity
     - flatpak
     - locales-all
-    - geoclue
+    - geoclue-2.0
