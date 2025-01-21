@@ -1,0 +1,4 @@
+name: cosmic
+type: shell
+commands:
+  - bash /usr/share/get-cosmic.sh

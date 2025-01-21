@@ -1,0 +1,11 @@
+name: plymouth-theme-vanilla
+type: dpkg-buildpackage
+source:
+  type: git
+  url: https://github.com/Vanilla-OS/plymouth-theme-vanilla
+  tag: v1.0.1
+  paths:
+  - plymouth-theme-vanilla
+  - plymouth-theme-vanilla-bgrt
+  - plymouth-theme-vanilla-logo
+  - plymouth-theme-vanilla-text

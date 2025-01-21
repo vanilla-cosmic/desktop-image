@@ -1,0 +1,86 @@
+name: vso
+type: shell
+source:
+  type: tar
+  url: https://github.com/Vanilla-OS/vanilla-system-operator/releases/download/v2.0.4/vso.tar.gz
+  checksum: cd65bcfcfcddd6f7095ba5db7a79a23e9d4fcffd11113e372de916b40719570e
+commands:
+- mkdir -p /usr/bin
+- cp /sources/vso/vso /usr/bin/vso
+- chmod +x /usr/bin/vso
+modules:
+- name: vso-manpage
+  type: shell
+  source:
+    type: tar
+    url: https://github.com/Vanilla-OS/vanilla-system-operator/releases/download/v2.0.4/vso-man.tar.gz
+    checksum: ad39ca5b7fb301d102345bfb7e92fd32cdd24f0348fbaae134eeb07eea1c9b4f
+  commands:
+  - mv /sources/vso-manpage/man/vso.1 /usr/share/man/man1/
+
+- name: vso-os-shell
+  type: shell
+  commands:
+  - chmod +x /usr/bin/vso-os-shell
+  - echo "/usr/bin/vso-os-shell" >> /etc/shells
+  - sed -i 's/^\(SHELL=\).*/\1\/usr\/bin\/vso-os-shell/' /etc/default/useradd
+
+- name: reset-vso
+  type: shell
+  commands:
+  - chmod +x /usr/bin/reset-vso
+
+- name: wait-for-connection
+  type: shell
+  commands:
+  - chmod +x /usr/bin/wait-for-connection
+
+- name: vso-gnome-ext
+  type: shell
+  source:
+    type: tar
+    url: https://github.com/Vanilla-OS/vso-gnome-ext/archive/refs/tags/1.3.tar.gz
+  commands:
+  - mkdir -p /usr/share/gnome-shell/extensions/
+  - mv /sources/vso-gnome-ext/vso-gnome-ext-1.3/vso\@vanillaos.org /usr/share/gnome-shell/extensions/vso\@vanillaos.org
+
+- name: vso-deps-install
+  type: apt
+  source:
+    packages:
+    - dpkg-dev
+    - ifstat
+
+- name: adwdialog
+  type: dpkg-buildpackage
+  source:
+    type: git
+    url: https://github.com/Vanilla-OS/AdwDialog.git
+    tag: v0.2.0
+    paths:
+      - adwdialog
+  modules:
+  - name: adwdialog-deps-install
+    type: apt
+    source:
+      packages:
+      - build-essential
+      - debhelper
+      - desktop-file-utils
+      - dpkg-dev
+      - gettext
+      - libadwaita-1-dev
+      - libjpeg-dev
+      - make
+      - meson
+      - python3
+
+- name: enable-systemd-unit
+  type: shell
+  commands:
+  - ln -s /usr/lib/systemd/system/vanilla-updates.service /etc/systemd/system/multi-user.target.wants/vanilla-updates.service
+  - ln -s /usr/lib/systemd/system/vanilla-updates.timer /etc/systemd/system/timers.target.wants/vanilla-updates.timer
+  - mkdir -p /usr/lib/systemd/user/default.target.wants
+  - ln -s /usr/lib/systemd/user/vso-pre-run.service /usr/lib/systemd/user/default.target.wants/vso-pre-run.service
+  - ln -s /usr/lib/systemd/user/vso-migrate-repo.service /usr/lib/systemd/user/default.target.wants/vso-migrate-repo.service
+  - ln -s /usr/lib/systemd/user/vso-tasks-rotation.service /usr/lib/systemd/user/default.target.wants/vso-tasks-rotation.service

@@ -1,0 +1,9 @@
+name: utilities
+type: apt
+source:
+  packages:
+    - ghostscript
+    - zenity
+    - flatpak
+    - locales-all
+    - geoclue

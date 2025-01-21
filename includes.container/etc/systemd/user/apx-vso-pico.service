@@ -1,0 +1,16 @@
+[Unit]
+Description=Podman container-apx-vso-pico.service
+Documentation=man:podman-generate-systemd(1)
+PartOf=graphical-session.target
+Requires=podman.service
+Wants=graphical-session.target
+After=graphical-session.target
+
+[Service]
+TimeoutStopSec=10
+RemainAfterExit=yes
+ExecStop=/.system/usr/bin/podman stop -t 3 apx-vso-pico
+ExecStopPost=/.system/usr/bin/podman stop -t 3 apx-vso-pico
+
+[Install]
+WantedBy=graphical-session.target
