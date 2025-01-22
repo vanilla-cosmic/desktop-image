@@ -36,8 +36,8 @@ for file in "${FILES[@]}"; do
   wget "${BASE_URL}/${file}" -P ./rpm_files
 done
 
-echo "Installing required tools..."
-sudo apt-get install -y rpm2cpio alien cpio libdisplay-info-bin
+echo "Installing required tools and dependencies..."
+sudo apt-get install -y rpm2cpio alien cpio libdisplay-info-bin libseat1 libxkbcommon0 libinput-bin libinput10 dbus
 
 echo "Converting and installing RPM files..."
 cd ./rpm_files || exit
