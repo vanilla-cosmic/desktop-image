@@ -37,7 +37,7 @@ for file in "${FILES[@]}"; do
 done
 
 echo "Installing required tools..."
-sudo apt-get install -y rpm2cpio alien cpio
+sudo apt-get install -y rpm2cpio alien cpio libdisplay-info-bin
 
 echo "Converting and installing RPM files..."
 cd ./rpm_files || exit
