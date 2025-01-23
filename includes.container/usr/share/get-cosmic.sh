@@ -37,7 +37,7 @@ for file in "${FILES[@]}"; do
 done
 
 echo "Installing required tools and dependencies..."
-sudo apt-get install -y rpm2cpio alien cpio libdisplay-info-bin libseat1 libxkbcommon0 libinput-bin libinput10 dbus
+sudo apt-get install -y rpm2cpio alien cpio libdisplay-info-bin libseat1 libxkbcommon0 libinput-bin libinput10 dbus xwayland
 
 echo "Converting and installing RPM files..."
 cd ./rpm_files || exit
