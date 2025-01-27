@@ -3,8 +3,8 @@ type: shell
 commands:
   - bash /usr/share/get-cosmic.sh
 modules:
-  name: jq
-  type: apt
-  source:
-    packages:
-    - jq
+  - name: jq
+    type: apt
+    source:
+      packages:
+      - jq
