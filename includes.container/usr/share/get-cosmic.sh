@@ -1,6 +1,6 @@
 #!/bin/bash
 
-deb_urls=$(bash get-cosmic-deb-urls.sh)
+deb_urls=$(bash /usr/share/get-cosmic-deb-urls.sh)
 
 mkdir -p deb_files
 cd deb_files || exit
