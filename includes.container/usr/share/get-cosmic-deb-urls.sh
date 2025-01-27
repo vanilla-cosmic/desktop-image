@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 API_URL="https://api.github.com/repos/vanilla-cosmic/cosmic-epoch/releases/tags/continuous"
 

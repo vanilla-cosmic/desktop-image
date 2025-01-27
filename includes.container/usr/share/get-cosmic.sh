@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 deb_urls=$(bash get-cosmic-deb-urls.sh)
 
