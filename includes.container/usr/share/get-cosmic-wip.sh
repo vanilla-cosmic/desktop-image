@@ -12,7 +12,7 @@ for url in $deb_urls; do
 done
 
 echo "Installing required tools and dependencies..."
-sudo apt-get install -y greetd libdisplay-info-bin libdisplay-info2 libseat1 libxkbcommon0 libinput-bin libinput10 dbus xwayland geoclue-2.0 playerctl
+sudo apt-get install -y greetd libdisplay-info-bin libdisplay-info2 libseat1 libxkbcommon0 libinput-bin libinput10 dbus xwayland geoclue-2.0 playerctl gettext
 wget https://archive.neon.kde.org/unstable/pool/main/libd/libdisplay-info/libdisplay-info1_0.1.1-1+22.04+jammy+unstable+build3_amd64.deb
 sudo apt-get install -y ./libdisplay-info1_0.1.1-1+22.04+jammy+unstable+build3_amd64.deb
 
