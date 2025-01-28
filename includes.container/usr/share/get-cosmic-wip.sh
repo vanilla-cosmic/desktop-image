@@ -18,6 +18,13 @@ sudo apt-get install -y ./libdisplay-info1_0.1.1-1+22.04+jammy+unstable+build3_a
 
 echo "Installing cosmic packages"
 sudo apt-get install -y ./*.deb
+
+echo "Holding cosmic packages"
+for deb in ./*.deb; do
+  package=$(dpkg --info "$deb" | grep " Package:" | awk '{print $2}')
+  sudo apt-mark hold "$package"
+done
+
 if [ $? -ne 0 ]; then
   echo "Failed to install cosmic packages"
   exit 1
