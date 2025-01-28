@@ -1,7 +1,7 @@
 name: cosmic
 type: shell
 commands:
-  - bash /usr/share/get-cosmic.sh
+  - bash /usr/share/get-cosmic-wip.sh
 modules:
   - name: jq
     type: apt
