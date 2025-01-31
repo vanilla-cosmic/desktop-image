@@ -62,7 +62,7 @@ stages:
           - modules/110-fonts.yml
           - modules/121-disable-ssh-daemon.yml
           - modules/130-plymouth.yml
-          - modules/131-plymouth-theme-vanilla.yml
+          - modules/131-plymouth-theme-singularity.yml
           - modules/140-password.yml
           - modules/160-utilities.yml
           - modules/210-libs-extra.yml

@@ -1,0 +1,11 @@
+name: plymouth-theme-singularity
+type: dpkg-buildpackage
+source:
+  type: git
+  url: https://github.com/singularityos-lab/plymouth-theme-singularity
+  tag: v1.0.1
+  paths:
+  - plymouth-theme-singularity
+  - plymouth-theme-singularity-bgrt
+  - plymouth-theme-singularity-logo
+  - plymouth-theme-singularity-text
