@@ -1,15 +1,14 @@
-name: Cosmic Vanilla Desktop # Replace this name with your image name
-id: desktop # Replace this ID with your image ID
+name: Cosmic Vanilla Desktop
+id: desktop
 stages:
   - id: build
-    base: ghcr.io/vanilla-os/core:main # Optionally, Replace this image URL with a different one i.e. nvidia:main, etc
+    base: ghcr.io/vanilla-os/core:main
     singlelayer: false
     labels:
-      maintainer: self-maintained # Optionally, Replace this with your name
+      maintainer: self-maintained
     args:
-      DEBIAN_FRONTEND: noninteractive # Set the image environment as non-interactive
+      DEBIAN_FRONTEND: noninteractive
 
-    # Commands to run first before building the modules
     runs:
       commands:
         - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
