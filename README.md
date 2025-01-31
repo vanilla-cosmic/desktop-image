@@ -5,7 +5,7 @@
 </div>
 
 This image is based on top of [`vanillaos/core`](https://github.com/Vanilla-OS/core-image/pkgs/container/core) and offers the default
-Singularity OS Desktop experience with GNOME.
+Singularity OS Desktop experience with COSMIC.
 
 ## Build
 
