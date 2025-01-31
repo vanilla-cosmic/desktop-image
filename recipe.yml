@@ -1,4 +1,4 @@
-name: Cosmic Vanilla Desktop
+name: Singularity OS Desktop
 id: desktop
 stages:
   - id: build
