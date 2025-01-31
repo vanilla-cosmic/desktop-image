@@ -1,0 +1,11 @@
+PRETTY_NAME="Singularity OS"
+NAME="Singularity OS"
+VERSION_ID="rolling"
+VERSION="Rolling Release"
+VERSION_CODENAME="singularity"
+ID=singularity
+ID_LIKE=debian
+HOME_URL="https://github.com/singularityos-lab"
+SUPPORT_URL="https://github.com/singularityos-lab"
+BUG_REPORT_URL="https://github.com/singularityos-lab"
+PRIVACY_POLICY_URL="https://github.com/singularityos-lab"
