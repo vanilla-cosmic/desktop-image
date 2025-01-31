@@ -3,7 +3,7 @@ type: dpkg-buildpackage
 source:
   type: git
   url: https://github.com/singularityos-lab/plymouth-theme-singularity
-  tag: v1.0.1
+  tag: v1.0.2
   paths:
   - plymouth-theme-singularity
   - plymouth-theme-singularity-bgrt
